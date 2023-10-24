@@ -1,0 +1,62 @@
+{
+	"level" :{
+		"agents" : [
+		{
+			"agent_id" : "blue_human",
+			"agent_name" : "Agent (you)",
+			"agent_type" : "human",
+			"liabilities" : []
+		},
+		{
+			"agent_id" : "blue_artificial",
+			"agent_name" : "Artificial Agent",
+			"agent_type" : "task_based",
+			"liabilities" : []
+		}
+		],
+		"recipes" : [
+		{
+			"family_id" : "salad",
+			"serve_base" : [],
+			"base_ingredient" : ["Chopped(lettuce)"],
+			"toppings" : [
+				"Chopped(tomato)",
+				"Chopped(onion)"
+			],
+			"min_toppings" : 1,
+			"max_toppings" : 2,
+			"base_score" : 10
+		}
+		],
+		"goals" : [
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : [],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(onion)"
+				]
+			},
+			"appears_at" : 10,
+			"expires_after" : 500,
+			"max_reward" : 30
+		},
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : [],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(tomato)"
+				]
+			},
+			"appears_at" : 70,
+			"expires_after" : 500,
+			"max_reward" : 20
+		}
+		],
+		"welcome_text" : "U gaat nu met de blauwe teamgenoot werken. U doet dit 1 keer met iedere delegatievorm. Daarna volgt een vragenlijst. U kunt nu eerst uw teamgenoot aansturen met de taakgestuurde delegatie vorm. Raadpleeg de uitgeprinte instructies als u de besturingstoetsen vergeten bent. Druk op 'Start' als u klaar bent om te beginnen.",
+		"final_text" : "U kunt nu doorgaan naar de volgende delegatie vorm. Druk op 'Continue' om door te gaan."
+	}
+}

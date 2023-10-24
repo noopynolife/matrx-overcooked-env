@@ -1,0 +1,17 @@
+{
+	"recipes" : [
+		{
+			"family_id" : "sushi",
+			"serve_base" : ["plate"],
+			"base_ingredient" : ["seaweed"],
+			"toppings" : [
+				"Boiled(rice)",
+				"Chopped(cucumber)",
+				"Chopped(salmon)"
+			],
+			"min_toppings" : 1,
+			"max_toppings" : 2,
+			"base_score" : 40
+		}
+	]
+}

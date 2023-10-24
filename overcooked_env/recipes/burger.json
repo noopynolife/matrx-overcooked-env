@@ -1,0 +1,18 @@
+{
+	"recipes" : [
+		{
+			"family_id" : "burger",
+			"serve_base" : ["plate"],
+			"base_ingredient" : ["burger_bun"],
+			"toppings" : [
+				"Grilled(burger_patty)",
+				"Chopped(tomato)",
+				"Chopped(onion)",
+				"cheese"
+			],
+			"min_toppings" : 0,
+			"max_toppings" : 4,
+			"base_score" : 40
+		}
+	]
+}

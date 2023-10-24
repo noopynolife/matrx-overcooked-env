@@ -1,0 +1,187 @@
+body {
+  overflow-y: hidden;
+}
+
+.container {
+  height: 85%;
+  width: 100%;
+  margin: 1%;
+  display: flex;
+}
+
+.left-div {
+  background-color: white;
+  height: 100%;
+  text-align: center;
+  display: block;
+  max-width:55vh; min-width:55vh;
+}
+
+.center-div {
+  background-color: white;
+  text-align: center;
+  margin-right: 2%;
+  margin-left: 2%;
+  display: block;
+  flex: 1;
+}
+
+.right-div {
+  background-color: white;
+  height: 100%;
+  text-align: center;
+  display: block;
+  max-width:40vh; min-width:40vh;
+}
+
+.overflow-auto {
+	border-radius: 5px;
+}
+
+/* Arrange buttons */
+.btn-matrix {
+   display: flex;
+   width: 100%;
+   flex-wrap: wrap; /* allow buttons to jump to another row */
+}
+.btn-matrix > .btn {
+   width: 25%; /* force buttons to have the same width regardless of content */
+   max-width: 25%;
+   min-width: 25%;
+   border-radius: 0 !important;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+}
+
+.button-img {
+  width: 100%;
+  display: table-cell;
+  vertical-align: top;
+  text-align: center;
+  border-radius: 3px;
+  object-fit: cover;
+  margin-bottom: 2%;
+  flex: 1;
+}
+
+.cancel-img{
+   position: absolute;
+   top: -5%;
+   left: 10%;
+   width: 80%;
+   height: 80%;
+   object-fit: cover;
+   z-index: 10;
+   display: none;
+   opacity: 0.9;
+   vertical-align: top;
+   text-align: center;
+}
+
+.btn:hover > div > .cancel-img{
+	display: table-cell;
+}
+
+.button-text {
+  vertical-align: bottom;
+  display: table-cell;
+  font-size: 1.85vh;
+  text-align: center;
+  width: 100%;
+  flex: 1;
+}
+
+.number-div {
+  border-radius: 50%;
+  position: absolute;
+  width: 25%;
+  height: 0;
+  padding-bottom:25%;
+  right: 10%;
+  top: 10%;
+  z-index: 1;
+}
+
+.number-span {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  font-size: 1vw;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.not-found-text {
+  vertical-align: center;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  margin-bottom: -2%; /* superimpose borders of the buttons from adjacent rows */
+  display: none;
+  border-radius: 5px;
+  width: 99.1%;
+}
+
+.submenu {
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.menu_title {
+  width: 100%;
+  min-width: 100%;
+}
+
+.time-bar {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  background-color: green;
+  min-height: 5%;
+  height: 5%;
+  border-radius: 5px;
+  margin-top: 2%;
+  margin-bottom: 5%; /* because of the bottom alignment we need to make sure that there is some room left below the time bar */
+  vertical-align: bottom;
+}
+
+.cover-screen {
+	z-index: 500; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 100%;
+}
+
+.cover-div {
+  background-color: black;
+  opacity: 0.50;
+  width: 100%;
+  height: 100%;
+}
+
+.control-menu {
+	background-color: white;
+	position: absolute;
+	top: 15%;
+	left: 18%;
+	width: 65%;
+	height: 70%;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	padding: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.disconnected_notification {
+	z-index: 550;
+}

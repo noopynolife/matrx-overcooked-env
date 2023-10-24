@@ -1,0 +1,62 @@
+{
+	"level" :{
+		"agents" : [
+		{
+			"agent_id" : "blue_human",
+			"agent_name" : "Agent (you)",
+			"agent_type" : "human",
+			"liabilities" : []
+		},
+		{
+			"agent_id" : "pink_artificial",
+			"agent_name" : "Artificial Agent",
+			"agent_type" : "goal_based",
+			"liabilities" : []
+		}
+		],
+		"recipes" : [
+		{
+			"family_id" : "salad",
+			"serve_base" : [],
+			"base_ingredient" : ["Chopped(lettuce)"],
+			"toppings" : [
+				"Chopped(tomato)",
+				"Chopped(onion)"
+			],
+			"min_toppings" : 1,
+			"max_toppings" : 2,
+			"base_score" : 10
+		}
+		],
+		"goals" : [
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : [],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(onion)"
+				]
+			},
+			"appears_at" : 10,
+			"expires_after" : 500,
+			"max_reward" : 30
+		},
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : [],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(tomato)"
+				]
+			},
+			"appears_at" : 70,
+			"expires_after" : 500,
+			"max_reward" : 20
+		}
+		],
+		"welcome_text" : "U kunt nu uw teamgenoot aansturen met de doelgestuurde delegatie vorm. Hierna volgt een vragenlijst. Raadpleeg de uitgeprinte instructies als u de besturingstoetsen vergeten bent. Druk op 'Start' als u klaar bent om te beginnen.",
+		"final_text" : "LET OP: Dit was uw laatste taak met de roze teamgenoot. Ga nu eerst naar de vragenlijst om vragen te beantwoorden over uw ervaring met de roze teamgenoot, voordat u op 'Continue' drukt."
+	}
+}

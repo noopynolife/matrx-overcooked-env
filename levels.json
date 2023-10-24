@@ -1,0 +1,18 @@
+{
+	"levels":
+	[
+		"no_agent_tutorial.json",
+		"task_based_tutorial.json",
+		"play_based_tutorial.json",
+		"goal_based_tutorial.json",
+		"task_based_pink.json",
+		"play_based_pink.json",
+		"goal_based_pink.json",
+		"task_based_blue.json",
+		"play_based_blue.json",
+		"goal_based_blue.json",
+		"task_based_yellow.json",
+		"play_based_yellow.json",
+		"goal_based_yellow.json"
+	]
+}

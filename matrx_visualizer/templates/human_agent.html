@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="/static/images/X.ico">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap-4.4.1.min.css" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/GUI.css">
+    <link rel="stylesheet" href="/static/css/OvercookedGUI.css">
+
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="/static/lib/fontawesome-free-5.12.0-web/css/all.css">
+
+    <title>{{ id }} view</title>
+</head>
+
+<body>
+
+    <!-- Toolbar -->
+    <div id="matrx-toolbar" class="row toolbar bg-dark">
+        <div class="col-sm">
+            <img src="/static/images/matrx_logo_light.svg" alt="MATRX" id="matrx_logo">
+            <button type="button" class="btn btn-dark" id="start_button" style="display:none"><i class="fas fa-play text-light"></i></button>
+            <button type="button" class="btn btn-dark hidden" id="pause_button" style="display:none"><i class="fas fa-pause text-light"></i></button>
+            <button type="button" class="btn btn-dark" id="stop_button"><i class="fas fa-stop text-light"></i></button>
+            <div class="btn-group" style="display:none;">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i></button>
+                <div id="agent_dropdown" class="dropdown-menu">
+                </div>
+            </div>
+        </div>
+	<!-- We don't need these buttons
+        <div class="col-sm" align="right">
+            <button type="button" class="btn btn-dark" id="chat_button" onclick="chatToggle()" data-toggle="collapse" data-target="#chat" aria-expanded="false" aria-controls="chat"><i class="fas fa-comments text-light"></i></button>
+            <button type="button" class="btn btn-dark" id="draw_button" onclick="drawToggle()"><i class="fas fa-pencil-alt text-light"></i></button>
+            <button type="button" class="btn btn-dark" id="erase_button" onclick="eraseToggle()"><i class="fas fa-eraser text-light"></i></button>
+        </div>
+	-->
+    </div>
+
+    <div class="row content-row">
+		<div class="container">
+		
+			<!-- Agent manager (delegation interface elements) -->
+		    <div class="left-div">
+				<div class="menu_title"><h5>Agent Manager</h5></div>
+				<div class="submenu">
+					<div class="menu_title"><h6>Queued Tasks</h6></div>
+					<div class="scrollbar-primary bg-light" style="max-height: 22vh; min-height: 22vh; width:100%; overflow-x:scroll; overflow-y:hidden; white-space: nowrap; border-radius:2%;">
+						<div id="agent_tasks" class="btn-group btn-matrix" role="group" style="flex-wrap:nowrap;">
+						<!-- 
+						These are generated during the simulation
+						-->
+						</div>
+					</div>
+				</div>
+				<div id="task-based" class="submenu" style="display:none">
+					<div class="menu_title"><h6>Task Selector</h6></div>
+					<div class="input-group">
+					  <div class="input-group-prepend">
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a class="nav-link active" data-togle="pill" role="tab" href="#" onclick="switch_tab_content('get');">Grab New</a></li>
+							<li class="nav-item"><a class="nav-link" data-togle="pill" role="tab" href="#" onclick="switch_tab_content('move');">Move to</a></li>
+							<li class="nav-item"><a class="nav-link" data-togle="pill" role="tab" href="#" onclick="switch_tab_content('use');">Use</a></li> 
+						</ul>
+					  </div>
+					  <input style='display:none' type="text" class="form-control" placeholder="Search" aria-label="Task based action filter" oninput="search(this);">
+					</div>
+					<div class="overflow-auto scrollbar-primary bg-light" style="max-height: 45vh; min-height: 45vh; width: 100%">
+						<span class="text-light bg-secondary not-found-text">No match found.</span>							
+						<div id='get' class="btn-group btn-matrix" role="group" style="display:flex">
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+						<div id='move' class="btn-group btn-matrix" role="group" style="display:none">
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+						<div id='use' class="btn-group btn-matrix" role="group"style="display:none" >
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+					</div>
+				</div>
+				
+				<div id="goal-based" class="submenu" style="display:none">
+					<div class="menu_title"><h6>Goal Selector</h6></div>
+					<div class="input-group">
+					  <div class="input-group-prepend">
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a class="nav-link active" data-togle="pill" role="tab" href="#" onclick="switch_tab_content('priority');">Prioritize</a></li>
+						</ul>
+					  </div>
+					  <input style='display:none' type="text" class="form-control" placeholder="Search" aria-label="Goal based priority action filter" oninput="search(this);">
+					</div>
+					<div class="overflow-auto scrollbar-primary bg-light" style="max-height: 45vh; min-height: 45vh; width: 100%">
+						<span class="text-light bg-secondary not-found-text">No match found.</span>							
+						<div id='priority' class="btn-group btn-matrix" role="group" style="display:flex">
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+					</div>
+				</div>
+				
+				<div id="play-based" class="submenu" style="display:none">
+					<div class="menu_title"><h6>Play Selector</h6></div>
+					<div class="input-group">
+					  <div class="input-group-prepend">
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a class="nav-link active" data-togle="pill" role="tab" href="#" onclick="switch_tab_content('play');">Start Play</a></li>
+						</ul>
+					  </div>
+					  <input style='display:none' type="text" class="form-control" placeholder="Search" aria-label="Play selector action filter" oninput="search(this);">
+					</div>
+					<div class="overflow-auto scrollbar-primary bg-light" style="max-height: 45vh; min-height: 45vh; width: 100%">
+						<span class="text-light bg-secondary not-found-text">No match found.</span>							
+						<div id='play' class="btn-group btn-matrix" role="group" style="display:flex">
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Grid -->
+			<div class="center-div">
+				<div id="grid"></div>
+			</div>
+			
+			
+			<!-- Restaurant manager (Overcooked interface elements) -->
+			<div class="right-div">
+				<div class="menu_title"><h5>Restaurant Manager</h5></div>
+				<div class="submenu" style="display:flex">
+					<div style="flex:1; margin-right:2%;">
+						<div class="menu_title"><h6>Clock</h6></div>
+						<div class="overflow-auto scrollbar-primary bg-light" style="padding:10%;">
+							<span id="timer" style="font-size:4vh; display:block"></span>
+							<span style="font-size:1.85vh; display:block">minutes left until closing time</span>
+						</div>
+					</div>
+					
+					<div style="flex:1; margin-left:2%;">
+						<div class="menu_title"><h6>Score</h6></div>
+						<div class="overflow-auto scrollbar-primary bg-light" style="padding:10%;">
+							<span id="scoreboard" style="font-size:4vh; display:block"></span>
+							<span style="font-size:1.85vh; display:block">dishes served successfully</span>
+						</div>
+					</div>
+				</div>
+				<div class="submenu">
+					<div class="menu_title"><h6>Order Queue</h6></div>
+					<div class="overflow-auto scrollbar-primary bg-light" style="max-height: 58vh; min-height: 58vh; width:100%">
+						<div id='goals' class="btn-group btn-matrix" role="group" style="display:flex">
+							<!-- 
+							These are generated upon page load
+							-->
+						</div>
+					</div>
+				</div>
+				<!-- 
+				<div class=menu_title><h6>Recipe Book</h6></div>
+				-->
+			</div>
+		  </div>		
+
+		<!-- Message for end of simulation -->
+		<div id="cover_screen" class="cover-screen">
+			<div class="cover-div"></div>
+			<div class="control-menu" id="start_menu" style="display:none">
+				<h3>Informatie</h3>
+				<span id='welcome' style="font-size:1.85vh; display:block"></span>
+				<h3><br><br></h3>
+				<h3>Doelstelling</h3>
+				<span style="font-size:1.85vh; display:block">Maak en serveer alle bestellingen voor sluitingstijd.</span>
+				<button type="button" id="start_button" style="margin-top:5%; margin-bottom:2%; padding:2%; border-radius:5px;" class="btn btn-primary" onclick="send_api_message('start'); show_loading_screen();">Start</button>
+			</div>
+			<div class="control-menu" id="finished_menu" style="display:none">
+				<h3>Sluitingstijd!</h3>
+				<span style="font-size:1.85vh; display:block">U heeft</span>
+				<span id="final_score" style="font-size:4vh; display:block"></span>
+				<span style="font-size:1.85vh; display:block">bestelling(en) voltooid.</span>
+				<h3><br><br></h3>
+				<h3>Informatie</h3>
+				<span id='goodbye' style="font-size:1.85vh; display:block"></span>
+				<button type="button" style="margin-top:5%; margin-bottom:2%; padding:2%; border-radius:5px;" class="btn btn-primary" onclick="hide_end_simulation();">Continue</button>
+			</div>
+			<div class="control-menu" id="loading">
+				<img style="width:25vh; height:25vh" src="/fetch_external_media/loading.gif"></img>
+			</div>
+		</div>
+
+		<!-- Chat -->
+		<div class="collapse" id="chat">
+			<div class="container-fluid">
+				<h5>Chats</h5>
+				<div class="row">
+					<div class="col-md-3" id="chatrooms_list">
+						<div class="contact" id="new_chat_button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+</div>
+						<div id="new_chat_dropdown" class="dropdown-menu"></div>
+					</div>
+					<div class="col-md-9">
+						<div id="messages">
+						</div>
+						<input class="form-control" id="chat_form_input" placeholder="Open a chatroom first..">
+						<button type="button" id="chat_form_submit" class="btn btn-primary" onclick="send_message(event)" disabled>Send</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/static/lib/popper/popper-1.16.0.js"></script>
+    <script src="/static/lib/bootstrap/bootstrap-4.4.1.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/util.js"></script>
+    <script src="/static/js/toolbar.js"></script>
+    <script src="/static/js/context_menu.js"></script>
+    <script type="text/javascript" src="/static/js/gen_grid.js"></script>
+    <script type="text/javascript" src="/static/js/loop.js"></script>
+    <script type="text/javascript" src="/static/js/human_agent.js"></script>
+	<script type="text/javascript" src="/static/js/task_based_delegation.js"></script>
+</body>
+
+</html>

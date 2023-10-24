@@ -1,0 +1,95 @@
+{
+	"level" :{
+		"agents" : [
+		{
+			"agent_id" : "blue",
+			"agent_name" : "Agent (you)",
+			"agent_type" : "human",
+			"liabilities" : []
+		},
+		{
+			"agent_id" : "artificial",
+			"agent_name" : "Artificial Agent",
+			"agent_type" : "play_based",
+			"liabilities" : [
+				{ 
+					"action" : "Chopped(tomato)",
+					"fault_type" : "poorly",
+					"fault_rate" : 0.5,
+					"rand_seed" : "BadTomato"
+				}
+			]
+		}
+		],
+		"recipes" : [
+		{
+			"family_id" : "salad",
+			"serve_base" : ["plate"],
+			"base_ingredient" : ["Chopped(lettuce)"],
+			"toppings" : [
+				"Chopped(tomato)",
+				"Chopped(onion)"
+			],
+			"min_toppings" : 1,
+			"max_toppings" : 2,
+			"base_score" : 10
+		}
+		],
+		"goals" : [
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : ["plate"],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(tomato)",
+					"Chopped(onion)"
+				]
+			},
+			"appears_at" : 50,
+			"expires_after" : 2000,
+			"max_reward" : 30
+		},
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : ["plate"],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(tomato)"
+				]
+			},
+			"appears_at" : 250,
+			"expires_after" : 2000,
+			"max_reward" : 20
+		},
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : ["plate"],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(onion)"
+				]
+			},
+			"appears_at" : 300,
+			"expires_after" : 2000,
+			"max_reward" : 20
+		},
+		{
+			"target" : {
+				"family_id" : "salad",
+				"serve_base" : ["plate"],
+				"base_ingredient" : ["Chopped(lettuce)"],
+				"toppings" : [
+					"Chopped(tomato)",
+					"Chopped(onion)"
+				]
+			},
+			"appears_at" : 2000,
+			"expires_after" : 2000,
+			"max_reward" : 20
+		}
+		]
+	}
+}
